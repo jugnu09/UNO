@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-xs-3">How many rounds you want to play ?</div>
+  <div class="col-xs-2">
+    <select [(ngModel)]="selectedVal">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+    </select>
+  </div>
+</div>
+<br/>
+<div class="row">
+  <div class="col-xs-3">
+    <button type="button" class="btn btn-default" data-dismiss="modal" (click)="generateTable(selectedVal)">Generate Score Table</button>
+  </div>
+</div>
+<br/>
+<div class="row" *ngIf = "show">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Round</th>
+        <th *ngFor="let player of players">{{player.name}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let arr of myArray;let i = index">
+        <td>Round {{i+1}}</td>
+        <td *ngFor="let item of arr | cell; index as indx"><input type="text" [(ngModel)]="arr[indx]"/></td>
+      </tr>
+      <tr>
+        <td><strong>Total</strong></td>
+        <td *ngFor="let score of totalScore">{{score}}</td>
+      </tr>
+    <tr>
+      <td>
+        <button type="submit" value="Show Score" (click)="addScore(myArray)">Show Score</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
