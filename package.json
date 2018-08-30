@@ -26,7 +26,8 @@
     "firebase": "^4.6.1",
     "font-awesome": "^4.7.0",
     "ngx-toastr": "^9.0.2",
-    "rxjs": "^6.0.0",
+    "rxjs": "^6.2.2",
+    "rxjs-compat": "^6.2.2",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
