@@ -1,12 +1,42 @@
 <div class="container">
-<nav class="navbar navbar-default">
-  <div>
-    <ul class="nav navbar-nav">
-      <li><a routerLink = '/play'>Play</a></li>
-      <li><a routerLink = '/reports'>Reports</a></li>
-      <li><a routerLink = '/settings'>Settings</a></li>
-    </ul>
+<div class="row">
+  <div *ngIf="!loggedIn">
+  <strong>
+    Welcome to UNO Score Card. Login to start the Game !
+  </strong>
+  <button class="loginBtn loginBtn--google" (click)="socialSignIn('google')">
+    Login with Google
+  </button>
   </div>
-</nav>
+  <form class="form-inline" *ngIf="loggedIn">
+    <input class="submit" type="button" value="Log out"/>
+    <div class="form-group">
+      <label class="sr-only" for="email">Name</label>
+      <div>
+        <span>Welcome {{data.name}} !!</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="sr-only" for="pwd">Image:</label>
+      <div>
+        <span><img src="{{data.image}}" alt="" style="border-radius: 50%;"></span>
+      </div>
+    </div>
+  </form>
+  <div>
+    <!--<button (click)="logout()">Logout</button>-->
+  </div>
+</div>
+<div class="row" *ngIf="loggedIn">
+  <nav class="navbar navbar-default">
+    <div>
+      <ul class="nav navbar-nav">
+        <li><a routerLink = '/play'>Play</a></li>
+        <li><a routerLink = '/reports'>Reports</a></li>
+        <li><a routerLink = '/settings'>Settings</a></li>
+      </ul>
+    </div>
+  </nav>
   <router-outlet></router-outlet>
+</div>
 </div>

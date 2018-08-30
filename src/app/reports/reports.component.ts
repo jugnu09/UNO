@@ -11,6 +11,7 @@ export class ReportsComponent implements OnInit {
   scoreCard = [];
   players =[];
   name;
+  mainArr=[];
   constructor(private myService : ServicesService) { }
 
   ngOnInit() {
@@ -34,11 +35,20 @@ export class ReportsComponent implements OnInit {
     });
   }
   generateArray(arr){
-    const obj =Object.assign({}, arr);
-    return Object.keys(obj).map((key)=>{
-      return {
-        key:key, value:obj[key][key]
+    //const obj =Object.assign({}, arr);
+    //return Object.keys(obj).map((key)=>{
+    //  return {
+    //    key:key, value:obj[key][key]
+    //  }
+    //});
+    for(var i=0;i<arr.length;i++){
+      var arr1=[];
+      for(var j=0;j<Object.keys(arr[0]).length;j++){
+        arr1.push(Object.values(arr[j]));
       }
-    });
+      this.mainArr.push(arr1);
+      arr1=[];
+    }
+    return this.mainArr;
   }
 }

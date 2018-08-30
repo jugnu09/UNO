@@ -13,6 +13,25 @@ import { SettingsComponent } from './settings/settings.component';
 import { ReportsComponent } from './reports/reports.component';
 import { PlayComponent } from './play/play.component';
 import { CellPipe } from './shared/cell.pipe';
+import { NumericDirective } from './directive/numeric.directive';
+import {
+  SocialLoginModule,
+  AuthServiceConfig,
+  GoogleLoginProvider,
+  FacebookLoginProvider,
+} from "angular-6-social-login";
+
+export function getAuthServiceConfigs() {
+  let config = new AuthServiceConfig(
+    [
+      {
+        id: GoogleLoginProvider.PROVIDER_ID,
+        provider: new GoogleLoginProvider("963558376168-ed1e2mjum4asp279nmlj01dk4k4j7ilb.apps.googleusercontent.com")
+      }
+    ]
+  );
+  return config;
+}
 
 const routes : Routes = [
   { path : 'play', component: PlayComponent},
@@ -26,7 +45,8 @@ const routes : Routes = [
     SettingsComponent,
     ReportsComponent,
     PlayComponent,
-    CellPipe
+    CellPipe,
+    NumericDirective
   ],
   imports: [
     BrowserModule,
@@ -35,9 +55,15 @@ const routes : Routes = [
     FormsModule,
     RouterModule.forRoot(routes),
     AngularFireDatabaseModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    SocialLoginModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: AuthServiceConfig,
+      useFactory: getAuthServiceConfigs
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
