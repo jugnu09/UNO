@@ -6,8 +6,8 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let item of generateArray(scoreCard)">
-    <td *ngFor="let a of name">{{item.value}}</td>
+  <tr *ngFor="let item of generateArray(scoreCard);index as i">
+    <td *ngFor="let player of players;index as indx">{{item[i][indx]}}</td>
   </tr>
   </tbody>
 </table>
