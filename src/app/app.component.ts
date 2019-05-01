@@ -13,10 +13,10 @@ import {
 export class AppComponent {
   title = 'UNO';
   data;
-  private loggedIn: boolean;
+  public loggedIn: boolean;
   constructor( private socialAuthService: AuthService ) {}
 
-  public socialSignIn(socialPlatform : string) {
+  public socialSignIn(socialPlatform: string) {
     let socialPlatformProvider;
     if(socialPlatform == "google"){
       socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
@@ -24,7 +24,6 @@ export class AppComponent {
 
     this.socialAuthService.signIn(socialPlatformProvider).then(
       (userData) => {
-        console.log(socialPlatform+" sign in data : " , userData);
         this.data = userData;
         this.loggedIn = (userData!=null);
       }

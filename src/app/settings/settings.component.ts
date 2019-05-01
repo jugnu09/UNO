@@ -14,7 +14,7 @@ import { Teams } from './../shared/teams'
 export class SettingsComponent implements OnInit {
   players: Players[];
   teams: Teams[];
-  constructor(private service: ServicesService, private toaster : ToastrService) {
+  constructor(public service: ServicesService, public toaster : ToastrService) {
   }
 
   ngOnInit() {
@@ -65,5 +65,6 @@ export class SettingsComponent implements OnInit {
     this.service.addNewTeam(ev.model);
     this.toaster.success("Team added Successfully", "New Team");
   }
+
 
 }

@@ -14,6 +14,7 @@ export class PlayComponent implements OnInit {
   players: Players[];
   public show:boolean = false;
   rounds;
+  selectedVal;
   myArray = [];
   totalScore=[];
   scoreObjFb={};

@@ -21,10 +21,9 @@ export class ReportsComponent implements OnInit {
       item.forEach(element => {
         const y = element.payload.toJSON();
         y['$key'] = element.key;
-        this.players.push(y as Players);
+        this.players.push(y);
       });
     });
-    this.name =["Ravi","Ritesh","Sheetal"];
     const score = this.myService.getScoreTable();
     score.snapshotChanges().subscribe(item => {
       item.forEach(element => {
@@ -32,23 +31,17 @@ export class ReportsComponent implements OnInit {
         y['$key'] = element.key;
         this.scoreCard.push(y);
       });
+      this.generateArray(this.scoreCard);
     });
   }
-  generateArray(arr){
-    //const obj =Object.assign({}, arr);
-    //return Object.keys(obj).map((key)=>{
-    //  return {
-    //    key:key, value:obj[key][key]
-    //  }
-    //});
-    for(var i=0;i<arr.length;i++){
-      var arr1=[];
-      for(var j=0;j<Object.keys(arr[0]).length;j++){
-        arr1.push(Object.values(arr[j]));
-      }
+  generateArray(arr) {
+    for (let i = 0; i < arr.length; i++) {
+      let arr1 = [];
+      arr1.push(Object.values(arr[i]).slice(0,-1));
       this.mainArr.push(arr1);
-      arr1=[];
+      arr1 = [];
     }
+    console.log(this.mainArr);
     return this.mainArr;
   }
 }
